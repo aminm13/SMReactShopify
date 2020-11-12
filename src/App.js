@@ -5,7 +5,10 @@ import data from './data.json'
 import BarcodeReader from "./Components/BarcodeReader";
 import NavBar from "./Components/NavBar";
 import Cart from "./Components/Cart";
-import Products from "./Components/Products";
+import Payment from "./Components/Payment";
+import ExitCode from "./Components/Exit";
+import History from "./Components/history";
+import DetailedHistory from "./Components/DetailedHistory";
 
 
 class App extends PureComponent {
@@ -38,20 +41,24 @@ class App extends PureComponent {
     }
     this.setState({cartItems})
   }
+  
+
  render (){
 
     return(
     <div className="App">
     <Router>
-      <NavBar />
-    <div className="main">
-   <BarcodeReader addToCart={this.addToCart} />
-   </div>
-   <div className="sidebar">
-     <Cart cartItems={this.state.cartItems}  removeFromCart={this.removeFromCart}/>
-   </div>
-    <Products products={this.state.products} addToCart={this.addToCart} />
-    <p>Footer </p>
+    <NavBar />
+    <Switch>
+    <Route path='/exit' component={ExitCode}></Route>  
+    <Route path='/history' component={History}></Route>  
+    <Route path='/detailedHistory' component={DetailedHistory}></Route>    
+    <Route path='/payment' component={Payment}></Route>    
+    <Route path='/'>
+    <BarcodeReader  addToCart={this.addToCart} />
+    <Cart cartItems={this.state.cartItems}  removeFromCart={this.removeFromCart}/>
+    </Route>
+    </Switch>
     </Router>
     </div>
 

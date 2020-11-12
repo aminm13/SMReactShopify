@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 class Products extends Component {
       render() { 
@@ -8,9 +9,9 @@ class Products extends Component {
             {this.props.products.map(product =>(
                 <li key={product.id}>
                     <p>{product.title}</p>
-                    <button onClick={()=> this.props.addToCart(product)} >
-                        Add To Cart
-                    </button>
+                    <Button variant="success" onClick={()=> this.props.addToCart(product)} >
+                        <i class="far fa-cart-plus"></i>
+                    </Button>
                 </li>
             ))}
             </ul>
